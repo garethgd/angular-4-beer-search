@@ -1,0 +1,32 @@
+<app-search>
+</app-search>
+<div class="row">
+<ng-template ngFor let-beer [ngForOf]="beers">
+ <div  [@moveInLeft]=""  class="columns small-12 medium-6 large-4 beers" *ngIf="beer.description" >
+    <div class="beer-container">
+      <div class="row">
+        <div class="columns small-12 large-10">
+          <a routerLink="/details/{{beer.id}}" class="beer-title">{{beer.nameDisplay}}</a>
+        </div>
+        <div class="columns small-12 large-2 show-for-large">
+          <a href="#" target="_blank" class="external">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              viewBox="0 0 96.8 96.8" style="enable-background:new 0 0 96.8 96.8;" xml:space="preserve">
+              <g id="group">
+                <circle class="circle" cx="48.4" cy="48.4" r="48.4" />
+                <polygon class="arrow" points="60.4,25.6 44.2,25.6 33.1,36.2 51.4,36.2 21.7,70.8 36,70.8 60.4,42.3 60.4,63.3 71,50.9 71,36.2 
+                  71,25.6 " />
+              </g>
+              </svg>
+          </a>
+        </div>
+      </div>
+      <p *ngIf="beer.description">{{beer?.description | length: 230 }}</p>
+      <!--<p>{{ programme.description }}</p>-->
+      <a routerLink="/details/{{beer.id}}" class="cta-btn btn2">More Info</a>
+    </div>
+  </div>
+</ng-template>
+ 
+
+</div>

@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="columns small-12 medium-6 large-7 beers" *ngIf="beer && beer.description else noBeer">
+    <div [@moveInLeft]="beer.state" class="beer-container">
+      <div class="row">
+        <div class="columns small-12 large-10">
+          <a routerLink="/details/{{beer.id}}" class="beer-title">{{beer.nameDisplay}}</a>
+          <img src="{{beer.labels.medium}}" />
+        </div>
+      </div>
+      <p *ngIf="beer.description">{{beer.description | length: 230}}</p>
+      <!--<p>{{ programme.description }}</p>-->
+      <div class="btns">
+        <a routerLink="/details/{{beer.id}}" class="cta-btn btn2">More Info</a>
+        <a routerLink="/randombeer" (click)="anotherBeer()" class="cta-btn"> Another Beer </a>
+        <a class="cta-btn" (click)="moreFromBrewery()"> More from this brewery </a>
+      </div>
+    </div>
+  </div>
+  
+</div>
+<!--<ng-template #noBeer>
+  <div [@moveInLeft]="beer.state" class="beer-container">
+    <div class="row">
+      <div class="columns small-12 large-10">
+        <a class="beer-title">No Description Available</a>
+      </div>
+    </div>
+</ng-template>-->

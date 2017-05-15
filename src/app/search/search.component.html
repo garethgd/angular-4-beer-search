@@ -1,0 +1,22 @@
+<div [@moveIn]="" class="row">
+  <div class="columns small-12 medium-9">
+    <p>Beer Name</p>
+    <p>Categories</p>
+    <form action="" #formData='ngForm'>
+      <input [formControl]="term" type="text" placeholder="Search Beer">
+      <select #selectedCategory>
+         <option  value="All">All</option>
+  <option *ngFor ="let value of categories" value="{{value.name}}">{{value.name}}</option>
+ 
+</select>
+      <a (click)="searchTerm(selectedCategory.value)" class="cta-btn"> Search </a>
+    </form>
+  </div>
+  <!--<ul class="suggestions">
+      <li *ngFor="let place of matchedArray" (click)="setSelectedPlace(place)">{{place.city}}
+        <p>Population: {{place.pop}} </p>
+      </li>
+      <li>Search for city</li>
+      <li>or a state</li>
+    </ul>-->
+</div>
