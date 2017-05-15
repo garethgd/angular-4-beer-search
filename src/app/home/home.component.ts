@@ -16,24 +16,31 @@ import { Subscription } from 'rxjs/Subscription'
 })
 export class HomeComponent implements OnInit {
 
-
   beers: Beer[];
   categories: any;
-  subscription: Subscription
 
   constructor(private _beerService: BeerService) {
-    _beerService.beerAnnounced$.subscribe(
-      beer => {
-        console.log(this.beers);
-        this.beers.push(null)
-        this.beers.push(beer)
-      }
-    )
+
 
   }
 
   ngOnInit() {
 
+    this._beerService.beerAnnounced$.subscribe(
+      beers => {
+
+        // this.beers = [];
+
+
+
+        this.beers = [...[beers]];
+        var s = new Set([beers]);
+        // this.beers = this.beers[0]
+        // this.beers.push(Array.from(s))
+        console.log(this.beers);
+      }
+    )
+    //Hot observable stream
     var obsBeers = this._beerService.getBeers();
     var hot = obsBeers.publish();
 

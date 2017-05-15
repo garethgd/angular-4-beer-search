@@ -16,7 +16,7 @@ export class BeerService {
   private beerAnnouncedSource = new Subject<Beer>();
 
   result: any;
-  apiKey: string = "&key=1c1c369a4b8d96448691c064c302323d";
+  apiKey: string = "&key=701ed7762b25b2685117bda870edb09d";
   beers: Array<Beer>;
   beerAnnounced$ = this.beerAnnouncedSource.asObservable();
   beer: Beer;
@@ -48,10 +48,8 @@ export class BeerService {
   }
 
   searchBeer(term) {
-
-    console.log(this.beerAnnouncedSource);
-    console.log(this.beerAnnouncedSource);
-    this.beerAnnounced$ = null;
+ 
+    
     console.log(this._searchUrl + `${term}` + "&key=" + this.apiKey)
 
     return new Promise((resolve, reject) => {
@@ -59,6 +57,7 @@ export class BeerService {
         .subscribe(res => {
           this.searchResults = res.data;
           console.log(this.searchResults)
+          this.beerAnnouncedSource.next(this.searchResults);
           resolve(this.beer);
         })
 
