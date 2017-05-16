@@ -18,47 +18,43 @@ export class HomeComponent implements OnInit {
 
   beers: Beer[];
   categories: any;
-
+  errorMsg: String;
   constructor(private _beerService: BeerService) {
-
 
   }
 
   ngOnInit() {
+    this.listenForBeerStream();
+    this.getBeers();
 
+  }
+
+
+  listenForBeerStream() {
     this._beerService.beerAnnounced$.subscribe(
       beers => {
 
-        // this.beers = [];
+        let beerStream = new Array();
 
+        for (let key in beers) {
+          if (beers.hasOwnProperty(key)) {
+            beerStream.push(beers[key]);
+          }
+        }
+        this.beers = beerStream.slice()
 
-
-        this.beers = [...[beers]];
-        var s = new Set([beers]);
-        // this.beers = this.beers[0]
-        // this.beers.push(Array.from(s))
-        console.log(this.beers);
       }
     )
-    //Hot observable stream
-    var obsBeers = this._beerService.getBeers();
-    var hot = obsBeers.publish();
 
-    obsBeers.subscribe(res => {
-      this.beers = res.data;
-      error => console.log(<any>error);
-
-    })
-    hot.connect();
-
-    // this.categories = this.beers.map(beer => {
-    //   beer.description
-    //   console.log(beer.description)
-    //   // console.log(beer.style.category.name)
-    //   //   categories.push(beer.style.category.name)
-
-    // })
-    console.log(this.categories)
   }
 
+  getBeers() {
+    var obsBeers = this._beerService.getBeers();
+    var hot = obsBeers.publish();
+    obsBeers.subscribe(res =>
+      this.beers = res.data,
+      error => { this.errorMsg = error }
+    )
+    hot.connect();
+  }
 }

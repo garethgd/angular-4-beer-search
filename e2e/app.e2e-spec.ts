@@ -1,10 +1,10 @@
-import { ProgrammeTrackPage } from './app.po';
+import { BeerPage } from './app.po';
 
 describe('programme-track App', () => {
-  let page: ProgrammeTrackPage;
+  let page: BeerPage;
 
   beforeEach(() => {
-    page = new ProgrammeTrackPage();
+    page = new BeerPage();
   });
 
   it('should display message saying app works', () => {

@@ -24,15 +24,12 @@ export class RandomBeerComponent implements OnInit {
     this.beer = undefined;
     this._beerService.getRandomBeer().then((res: Beer) => {
       this.beer = res;
-
-      console.log(this.beer);
       if (!this.beer.description || !this.beer.labels) {
         this.anotherBeer();
       }
     });
-
-
   }
+
   moreFromBrewery() {
     this._beerService.getBeerFromBrewery(this.beer);
   }

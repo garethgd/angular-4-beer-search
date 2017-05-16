@@ -1,20 +1,21 @@
-<div *ngIf="beer && beer.description && beer.labels  " [@moveInLeft]="" class="body-blur">
+<div *ngIf="beer && beer.description && beer.labels else noLabel " [@moveInLeft]="" class="body-blur">
   <div class="row">
-     <div class="row columns  medium-5 img-wrap">
-        <a routerLink="/" id="back"> Back </a>
+    <div class="row columns medium-5 img-wrap">
+      <a routerLink="/" id="back"> Back </a>
       <img src="{{beer.labels.large}}" />
     </div>
     <div class="columns small-12 medium-5">
-     
-     
-      <h1> {{beer.nameDisplay}} </h1>
-      <i> {{beer.style.shortName}}</i>
-      <i> {{beer.abv}}%</i>
-       <p>{{ beer.description }}</p>
+      <h1> {{beer?.nameDisplay}} </h1>
+      <i> {{beer?.style.shortName}}</i>
+      <i> {{beer?.abv}}%</i>
+      <p>{{ beer?.description }}</p>
       <i>Pairs well with:</i>
-      <p class="key-info">{{ beer?.foodPairings }}</p>
+      <p class="key-info" *ngIf="beer.foodPairings else noFood">{{ beer?.foodPairings }}</p>
+      <ng-template #noFood>
+        
+         <p class="key-info">Beer has no food Pairings available.</p>
+      </ng-template>
     </div>
-   
     <div class="columns small-12 medium-2">
       <a href="/" id="external-btn">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -29,3 +30,7 @@
     </div>
   </div>
 </div>
+<ng-template #noLabel>
+  <div class="row error">
+    Beer has no label or description.</div>
+</ng-template>

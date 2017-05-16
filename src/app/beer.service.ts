@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 import { Beer } from './beer';
 import "rxjs/Rx";
 import { Subject } from 'rxjs/Subject';
-
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class BeerService {
@@ -13,10 +14,10 @@ export class BeerService {
   private _randomBeerUrl: string = this._baseUrl + "/beer/random?hasLabels=Y&withBreweries=Y";
   private _beerByIdUrl: string = this._baseUrl + "/beer/oeGSxs&key="
   private _searchUrl: string = this._baseUrl + '/search?q='
-  private beerAnnouncedSource = new Subject<Beer>();
+  beerAnnouncedSource = new Subject<Beer>();
 
   result: any;
-  apiKey: string = "&key=701ed7762b25b2685117bda870edb09d";
+  apiKey: string = "&key=fe3b565be63e7886800b4be821be6c4a";
   beers: Array<Beer>;
   beerAnnounced$ = this.beerAnnouncedSource.asObservable();
   beer: Beer;
@@ -28,65 +29,46 @@ export class BeerService {
   constructor(private _http: Http) { }
 
   getBeers() {
-
-
-
-    // return new Promise((resolve, reject) => {
-
-    this.result = this._http.get(this._allBeersUrl + this.apiKey)
-      .map(res => res.json());
-    return this.result;
-
-
-    //   if (this.result) {
-    //     resolve(this.result);
-    //   }
-
-    // })
-
+    return this.result = this._http.get(this._allBeersUrl + this.apiKey)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
 
   }
+  handleError(error: Response | any) {
 
-  searchBeer(term) {
- 
-    
-    console.log(this._searchUrl + `${term}` + "&key=" + this.apiKey)
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.errorMessage || JSON.stringify(body);
+      errMsg = ` ${error.statusText || ''} ${err}`;
+    }
+    else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    return Observable.throw(errMsg);
+  }
+
+  searchBeer(term, cat) {
 
     return new Promise((resolve, reject) => {
-      return this._http.get(this._searchUrl + `${term}` + "&key=" + this.apiKey).map(res => res.json())
+      return this._http.get(this._searchUrl + `${term}` + this.apiKey).map(res => res.json())
         .subscribe(res => {
           this.searchResults = res.data;
-          console.log(this.searchResults)
-          this.beerAnnouncedSource.next(this.searchResults);
+
+          if (cat !== "All" && cat !== undefined) {
+            const filteredByCat = this.searchResults.filter(res => (res.style != undefined && res.style.category.name === cat))
+            this.beerAnnouncedSource.next(filteredByCat);
+          }
+
+          else {
+            this.beerAnnouncedSource.next(this.searchResults);
+          }
+
           resolve(this.beer);
         })
-
     });
   }
-  sortAlpha(beers) {
 
-
-    console.log(this.result.breweries);
-    const fullNames = beers.map(beer => {
-
-      if (beer.style != undefined) {
-
-        `${beer.style.category.name}`
-      }
-
-      else {
-        return '';
-      }
-
-    })
-    console.log(fullNames)
-
-
-    // fullNames.sort((lastOne, nextOne) => {
-
-    //   console.log(lastOne, nextOne);
-    // });
-  }
 
   getBeer(id) {
 
@@ -149,9 +131,7 @@ export class BeerService {
 
   getCategories() {
     return new Promise((resolve, reject) => {
-      console.log(this._baseUrl + "/categories&key=" + this.apiKey)
       this._http.get(this._baseUrl + "/categories?key=" + this.apiKey)
-
         .map(res => res.json())
         .subscribe(res => {
           this.categories = res.data
@@ -159,27 +139,15 @@ export class BeerService {
 
           if (this.categories) {
             let categories = Array.from(new Set(this.categories));
-            console.log(categories);
             resolve(categories);
+          }
+          else{
+            reject("Categories Undefined")
           }
 
         })
     })
 
-
-
-
-    // const categoryOptions = beers.filter(beer => {
-    //   if (typeof (beer.style) !== 'undefined') {
-    //     return beer.style.category.name
-    //   }
-    // }).map(beer => {
-    //   return beer.style.category.name
-    // })
-
-    // let categories = Array.from(new Set(categoryOptions));
-
-    // return categories
   }
 }
 

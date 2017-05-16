@@ -10,29 +10,39 @@
   font-size: 1.2em;
   display: block;
 }
-.row{
-  
-   .btn2 {
-  float: none;
-  position: absolute;
-  bottom: 23px;
-  color: #EFA409;
-  &:hover{
-    color: white;
-  }
- 
-   .st0{fill:#EFA409;}
-                .st1{fill:#2A3136;}
+
+h2 {
+  font-size: 35px;
+   color: #EFA409;
 }
-  a{
-    margin-top: 1rem;
-        color: #dfcfad;
-        &:hover{
+.error{
+      text-align: center;
+}
+.row {
+  .btn2 {
+    float: none;
+    position: absolute;
+    bottom: 23px;
     color: #EFA409;
+    &:hover {
+      color: white;
+    }
+    .st0 {
+      fill: #EFA409;
+    }
+    .st1 {
+      fill: #2A3136;
+    }
   }
-      
+  a {
+    margin-top: 1rem;
+    color: #dfcfad;
+    &:hover {
+      color: #EFA409;
+    }
   }
 }
+
 .beer-container p {
   margin: 20px 0 25px 0;
   color: white;
@@ -41,8 +51,6 @@
 .beers {
   margin-bottom: 30px;
 }
-
-
 
 .external svg {
   position: relative;

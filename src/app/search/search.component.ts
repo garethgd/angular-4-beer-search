@@ -14,42 +14,44 @@ import { moveIn } from '../animations';
 })
 export class SearchComponent implements OnInit {
 
-  items: Observable<Array<string>>;
   term = new FormControl();
   beers: Array<Beer>;
   categories: {};
+  currentCategory: String;
   constructor(private _beerService: BeerService) { }
 
   ngOnInit() {
-    this.initializeDropDowns()
-
-    //Match values from streamed array to what is typed
-    this.term.valueChanges
-      .debounceTime(400)
-      .distinctUntilChanged()
-    // .subscribe(data => this.displayMatches(data)),
-    // function (error) { console.log("Error happened" + error) },
-    // function () { console.log("the subscription is completed") }
-
-
-
-    // })
+    this.initializeDropdowns()
+    this.listenForInput();
   }
-  initializeDropDowns() {
+
+  initializeDropdowns() {
     this._beerService.getBeers()
       .subscribe((res: Beer[]) => {
         this.beers = res;
         this._beerService.getCategories().then(res => {
           this.categories = res;
-          console.log(this.categories)
-
-
         })
       })
   }
-  searchTerm(category) {
-    console.log(category);
-    this._beerService.searchBeer("hello")
+
+  listenForInput() {
+    this.term.valueChanges
+      .debounceTime(400)
+      .distinctUntilChanged()
+      .subscribe(term => this.searchTerm(term, this.currentCategory)),
+      function (error) { console.log("Error happened" + error) },
+      function () { console.log("the subscription is completed") }
+  }
+  currentCat(cat) {
+    this.currentCategory = cat;
+  
+    this.searchTerm(this.term.value, cat)
+
+  }
+  searchTerm(search, category) {
+    console.log(category );
+    this._beerService.searchBeer(search, category)
   }
 }
 
