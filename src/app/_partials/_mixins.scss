@@ -1,0 +1,115 @@
+/*FONT SIZE MIXIN */
+@mixin font-size($size, $spacing) {
+  font-size: $size;
+  line-height: $size + $spacing;
+}
+
+/*FONTS */
+@mixin font-face($font-family, $size, $weight) {
+  font-family: $font-family;
+  font-size: $size;
+  font-weight:$weight;
+}
+
+
+/* BREAKPOINTS MIXIN */
+@mixin bp-large {
+  @media only screen and (max-width: $screen-md-max) {
+    @content;
+  }
+}
+
+@mixin bp-medium {
+  @media only screen and (max-width: $screen-sm-max) {
+    @content;
+  }
+}
+
+@mixin bp-small {
+  @media only screen and (max-width: $screen-xs-max) {
+    @content;
+  }
+}
+
+/* DEVICES BREAKPOINTS */
+@mixin Desktop {
+  @media only screen and (min-width: ($screen-tablet-max + 1)) {
+    @content;
+  }
+}
+
+@mixin Tablet {
+  @media only screen and (min-width: $screen-sm-min) and (max-width: $screen-md-min) {
+    @content;
+  }
+}
+
+/*@mixin iPad {
+  @media only screen and (min-width: $screen-sm-min) and (max-width: $screen-tablet-max) {
+    @content;
+  }
+}*/
+
+@mixin Tablet-Portrait {
+  @media only screen and (min-width: $screen-sm-min) and (max-width: $screen-tablet-max) and (orientation:portrait) {
+    @content;
+  }
+}
+@mixin Tablet-Landscape {
+  @media only screen and (min-width: $screen-sm-min) and (max-width: $screen-tablet-max) and (orientation:landscape) {
+    @content;
+  }
+}
+@mixin Phone {
+  @media (max-width: $screen-xs-max){
+    @content;
+  }
+}
+
+@mixin Phone-Portrait {
+  @media (max-width: $screen-xs-max) and (orientation:portrait) {
+    @content;
+  }
+}
+@mixin Phone-Landscape {
+  @media (max-width: $screen-xs-max) and (orientation:landscape) {
+    @content;
+  }
+}
+
+
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;
+}
+@mixin abs-pos ($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  position: absolute;
+}
+
+@mixin red-highlight {
+  &:before
+  {
+    background: #a00029;
+    left: 0;
+    right: 0;
+    height: 200px;
+    position: absolute;
+    
+  }
+}

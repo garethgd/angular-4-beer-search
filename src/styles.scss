@@ -1,13 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css?family=Cabin:400,700');
-@import url('https://fonts.googleapis.com/css?family=Old+Standard+TT');
+
+
 @import url('https://fonts.googleapis.com/css?family=Francois+One');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Cabin:400,700');
+
+
+
 $bg: #2a3136;
 $text-color:#88949d;
 $accent-color:#EFA409;
-$red-brew:#C7213C;
+
 body {
   background: $bg;
   color: $text-color;
@@ -85,4 +89,26 @@ h1 {
   100% {
     fill: $bg;
   }
+}
+
+
+@media screen and (max-width: 40em)
+{
+  h1{
+    font-size:1.6em;
+  }
+
+  .body-blur{
+
+  }
+}
+
+@media screen and (min-width: 40em) and (max-width: 63em)
+{
+  h1{
+    font-size:2.8em;
+    line-height: 1em;
+  }
+
+
 }

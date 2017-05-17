@@ -1,3 +1,5 @@
+
+
 .row {
   display: -webkit-flex;
   display: flex;
@@ -50,4 +52,34 @@ img {
 
 .cta-btn {
   float: left;
+}
+@media screen and (max-width: 40em) {
+  #logo,
+  .cta-btn {
+    margin: 0 auto;
+    display: block;
+  }
+  .cta-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+  }
+  p {
+    font-size: 1em;
+  }
+  #external-btn {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto 20px auto;
+  }
+  .beers{
+.btns {
+    display:block;
+    .cta-btn {
+     float:none;
+    }
+  }
+  }
+  
 }

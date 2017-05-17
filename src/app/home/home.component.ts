@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
   listenForBeerStream() {
     this._beerService.beerAnnounced$.subscribe(
       beers => {
-
         let beerStream = new Array();
 
         for (let key in beers) {

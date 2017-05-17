@@ -9,11 +9,11 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class BeerService {
-  private _baseUrl: string = "https://api.brewerydb.com/v2"
-  private _allBeersUrl: string = this._baseUrl + "/beers?glasswareId=1&withBreweries=Y"
-  private _randomBeerUrl: string = this._baseUrl + "/beer/random?hasLabels=Y&withBreweries=Y";
-  private _beerByIdUrl: string = this._baseUrl + "/beer/oeGSxs&key="
-  private _searchUrl: string = this._baseUrl + '/search?q='
+  private _baseUrl: string = "/api/v2/"
+  private _allBeersUrl: string = this._baseUrl + "beers?glasswareId=1&withBreweries=Y"
+  private _randomBeerUrl: string = this._baseUrl + "beer/random?hasLabels=Y&withBreweries=Y";
+  private _beerByIdUrl: string = this._baseUrl + "beer/oeGSxs&key="
+  private _searchUrl: string = this._baseUrl + 'search?q='
   beerAnnouncedSource = new Subject<Beer>();
 
   result: any;
@@ -29,9 +29,17 @@ export class BeerService {
   constructor(private _http: Http) { }
 
   getBeers() {
-    return this.result = this._http.get(this._allBeersUrl + this.apiKey)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+
+    if (!this.result) {
+      return this.result = this._http.get(this._allBeersUrl + this.apiKey)
+        .map((res: Response) => res.json())
+        .publishReplay(1)
+        .refCount()
+        .catch(this.handleError);
+    }
+
+    return this.result;
+
 
   }
   handleError(error: Response | any) {
@@ -117,12 +125,7 @@ export class BeerService {
 
         .map(res => res.json())
         .subscribe(res => {
-          // this.result = res.data
 
-
-          // if (this.result) {
-          //   resolve(this.result);
-          // }
 
         })
 
@@ -135,13 +138,12 @@ export class BeerService {
         .map(res => res.json())
         .subscribe(res => {
           this.categories = res.data
-
-
+          
           if (this.categories) {
             let categories = Array.from(new Set(this.categories));
             resolve(categories);
           }
-          else{
+          else {
             reject("Categories Undefined")
           }
 

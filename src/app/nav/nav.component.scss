@@ -1,6 +1,5 @@
 .header {
   padding: 30px 0;
- 
 }
 
 .cta-btn,
@@ -11,3 +10,23 @@
 #logo {
   width: 100px;
 }
+
+@media screen and (max-width: 40em) {
+  #logo,
+  .cta-btn {
+    margin: 0 auto;
+    display: block;
+  }
+  .cta-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+  }
+  p {
+    font-size: 1em;
+  }
+  #header {
+    margin-bottom: 0;
+  }
+}
+
