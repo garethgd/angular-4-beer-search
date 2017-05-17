@@ -13,7 +13,9 @@ The project connects to the [BreweryDB API](http://www.brewerydb.com/developers)
 
 The list of beers can be filtered by category and the dropdown menu is initialised by retrieving categories from the BreweryDB API.
 
-You can click the random beer button to generate a random beer from the brewery database
+You can click the random beer button to generate a random beer from the brewery database.
+
+Attempted to create new random beer from same brewery functionality but ran out of time.
 
 ## Development server
 
