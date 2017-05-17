@@ -10,13 +10,15 @@ To install it run:
 npm install -g @angular/cli
 `
 
-The project connects to the [BreweryDB API](http://www.brewerydb.com/developers) and retrieves an initial list of beers. You can then search for beers through the input field. Rxjs [Observables](http://reactivex.io/documentation/observable.html) are used to create a reactive data stream and the view is updated accordingly with the new beer list through animations.
+The project connects to the [BreweryDB API](http://www.brewerydb.com/developers) and retrieves and displays an initial list of beers. The user can then search for beers through the input text field. 
+
+Rxjs [Observables](http://reactivex.io/documentation/observable.html) are used to create a reactive data stream and the view is updated accordingly with the new beer list via Angular 4 animations.
 
 The list of beers can be filtered by category and the dropdown menu is initialised by retrieving categories from the BreweryDB API.
 
 You can click the random beer button to generate a random beer from the brewery database.
 
-Attempted to create new random beer from same brewery functionality but ran out of time.
+I also attempted to create new random beer from same brewery functionality but ran out of time.
 
 ## Development server
 
@@ -30,7 +32,7 @@ Sass partials are created containing fonts and colors. In addition to this, I cr
 
 ## Beer Service
 
-The file beer.service.ts contains all the methods for the http requests used to retrieve data from the Brewery API. It provides persistant data to our components when needed. Some methods return Observables  and some return Promises. I wanted to demonstrate how I am able to use both.
+The `beer.service.ts` file contains all the methods for the http requests used to retrieve data from the Brewery API. It provides persistant data to our components when needed. Some methods return Observables while some return Promises. I wanted to demonstrate how I am able to use both.
 
 ## Animations
 
