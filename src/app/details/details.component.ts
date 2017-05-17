@@ -22,7 +22,7 @@ export class DetailsComponent implements OnInit {
       this._beerService.getBeer(id)
         .then((res: Beer) => {
           this.beer = res;
-          console.log(this.beer)
+          
         })
     })
   }

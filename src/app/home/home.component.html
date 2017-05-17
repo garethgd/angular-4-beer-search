@@ -1,7 +1,7 @@
 <app-search>
 </app-search>
 <div class="row">
-  
+   <div *ngIf="!beers">  <h2>No Beers found.  </h2></div>
   <ng-template ngFor let-beer [ngForOf]="beers"  let-i="index" *ngIf="beers else noBeers">
     <div [@moveInLeft]="" class="columns small-12 medium-6 large-4 beers" *ngIf="beer.description && beer.nameDisplay && i<11 ">
       <div class="beer-container">
@@ -28,8 +28,9 @@
       </div>
     </div>
   </ng-template>
+ 
   <ng-template #noBeers class="error">
-  <div >
+  <div>
     <h2>No Beers found.  </h2>
     <br>
   </div>

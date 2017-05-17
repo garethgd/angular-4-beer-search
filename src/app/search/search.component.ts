@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { BeerService } from '../beer.service';
 import { Beer } from '../beer';
 import { moveIn } from '../animations';
-
+import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -45,12 +45,10 @@ export class SearchComponent implements OnInit {
   }
   currentCat(cat) {
     this.currentCategory = cat;
-  
     this.searchTerm(this.term.value, cat)
 
   }
   searchTerm(search, category) {
-    console.log(category );
     this._beerService.searchBeer(search, category)
   }
 }

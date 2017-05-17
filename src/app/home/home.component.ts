@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , NgZone} from '@angular/core';
 import { BeerService } from '../beer.service';
 import { Beer } from '../beer';
 import { routerTransition, moveInLeft } from '../animations'
 import 'rxjs/add/operator/publish'
 import { Subscription } from 'rxjs/Subscription'
-
+import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,13 +19,15 @@ export class HomeComponent implements OnInit {
   beers: Beer[];
   categories: any;
   errorMsg: String;
-  constructor(private _beerService: BeerService) {
+  constructor(private _beerService: BeerService,  private cdRef: ChangeDetectorRef, private zone:NgZone) {
 
   }
-
+ 
   ngOnInit() {
-    this.listenForBeerStream();
+   
     this.getBeers();
+     this.listenForBeerStream();
+  
 
   }
 
@@ -40,8 +42,9 @@ export class HomeComponent implements OnInit {
             beerStream.push(beers[key]);
           }
         }
+        
         this.beers = beerStream.slice()
-
+        
       }
     )
 
