@@ -20,8 +20,13 @@ You can click the random beer button to generate a random beer from the brewery 
 
 ## Development server
 
-In order to avoid encountering a CORS error run the command  `ng serve --proxy proxy.config.json` command for a proxy path to the beer API. More information [here](https://www.youtube.com/watch?v=OjmZPPKaj6A).
+In order to avoid encountering a CORS browser error run the application with the command:
 
+`
+ng serve --proxy proxy.config.json
+`
+
+This provides a proxy path to the beer API. More information about that [here](https://www.youtube.com/watch?v=OjmZPPKaj6A).
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## SASS
