@@ -16,9 +16,7 @@ Rxjs [Observables](http://reactivex.io/documentation/observable.html) are used t
 
 The list of beers can be filtered by category and the dropdown menu is initialised by retrieving categories from the BreweryDB API.
 
-You can click the random beer button to generate a random beer from the brewery database.
-
-I also attempted to create new random beer from same brewery functionality but ran out of time.
+You can click the random beer button to generate a random beer from the brewery database. I also attempted to create new random beer from same brewery functionality but ran out of time.
 
 ## Development server
 
