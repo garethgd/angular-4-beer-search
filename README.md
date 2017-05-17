@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
-In order to run run install Node.js(https://nodejs.org/en/). In addition to this the angular-cli is needed.
+In order to run the application install [Node.js](https://nodejs.org/en/). In addition to this the angular-cli is needed.
 
 To install it run:
 
