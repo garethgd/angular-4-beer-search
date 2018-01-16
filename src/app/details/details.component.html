@@ -1,16 +1,17 @@
-<div *ngIf="beer && beer.description && beer.labels else noLabel " [@moveInLeft]="" class="body-blur">
+<div *ngIf="beer else noLabel " [@moveInLeft]="" class="body-blur">
   <div class="row">
     <div class="row columns medium-5 img-wrap">
       <a routerLink="/" id="back"> Back </a>
-      <img src="{{beer.labels.large}}" />
+      <img *ngIf="beer.labels" src="{{beer.labels?.large}}" />
+      <p *ngIf="!beer.labels" class="key-info">No label image available.</p>
     </div>
-    <div class="columns small-12 medium-5">
-      <h1 class="beer-name"> {{beer?.nameDisplay}} </h1>
-      <i> {{beer?.style.shortName}}</i>
-      <i> {{beer?.abv}}%</i>
-      <p>{{ beer?.description }}</p>
+    <div *ngIf="beer" class="columns small-12 medium-5">
+      <h1 class="beer-name"> {{beer.nameDisplay}} </h1>
+      <i> {{beer.style.shortName}}</i>
+      <i> {{beer.abv}}%</i>
+      <p>{{ beer.description }}</p>
       <i>Pairs well with:</i>
-      <p class="key-info" *ngIf="beer.foodPairings else noFood">{{ beer?.foodPairings }}</p>
+      <p class="key-info" *ngIf="beer.foodPairings else noFood">{{ beer.foodPairings }}</p>
       <ng-template #noFood>
         
          <p class="key-info">Beer has no food Pairings available.</p>

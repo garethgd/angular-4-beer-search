@@ -2,12 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-
+import { Http ,HttpModule} from '@angular/http' 
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BeerService } from './beer.service';
 import { NavComponent } from './nav/nav.component';
+import { SeoService } from './seo.service';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { DetailsComponent } from './details/details.component';
@@ -26,15 +28,16 @@ import { RandomBeerComponent } from './random-beer/random-beer.component';
     RandomBeerComponent
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
+    BrowserModule.withServerTransition({ appId: 'findBeerApp'}),
+    Ng4LoadingSpinnerModule.forRoot(),
     HttpModule,
+    FormsModule,
+    HttpClientModule, 
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
   ],
-  providers: [BeerService],
+  providers: [BeerService, HttpClientModule, HttpModule, SeoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -52,10 +52,10 @@ a:hover {
 }
 
 h1 {
-  font-family: "Cabin";
+  font-family: 'Francois One', sans-serif;
   color: white;
   margin-bottom: 20px;
-  text-transform: uppercase;
+ // text-transform: uppercase;
   font-weight: 700;
   font-size: 4.2em;
   line-height: 1.2em;
@@ -79,8 +79,11 @@ h1 {
     .arrow {
       fill: $accent-color;
     }
+   
   }
 }
+
+
 
 @keyframes animationCircle {
   0% {

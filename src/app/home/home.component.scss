@@ -6,11 +6,27 @@
   margin-bottom: 30px;
   height: 100%;
   position: relative;
+
+  .cornerIcon{
+    position: absolute;
+    z-index: 100;
+    color: #2a3136;
+    font-size: 30px;
+    top: 24px;
+    right: -3%;
+    
+  }
 }
 
 .beer-title {
-  font-size: 1.2em;
-  display: block;
+    margin-top: 1rem;
+    color: #dfcfad;
+    line-height: 1.3em;
+    color: #f1c761;
+    font-size: 1.7em;
+    text-align: left;
+    margin-top: 0rem;
+    color: #f1c761;
 }
 
 h2 {
@@ -53,6 +69,17 @@ h2 {
 .beers {
   margin-bottom: 30px;
 }
+.external{
+  &:hover{
+    .cornerIcon{
+      color:white;
+      font-size: 30px;
+      top: 24px;
+      right: -3%;
+     
+    }
+  }
+}
 
 .external svg {
   position: relative;
@@ -60,4 +87,118 @@ h2 {
   height: 50px;
   max-width: none;
   left: 24px;
+}
+
+
+// Unrelated Styling for Demo Purposes
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+html {
+  &, &:after, &:before {
+    box-sizing: border-box;
+  }
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.wrapper {
+  min-height: 105vh;
+  padding: 60px 20px 40px;
+  background: #5BABD1;
+  color: white;
+}
+
+.page-title {
+  margin: 0;
+  margin-bottom: 60px;
+  font-size: 45px;
+  text-align: center;
+  @media (max-width: 840px) {
+    font-size: 30px;
+  }
+}
+
+.page-body {
+  font-size: 20px;
+  background: rgba(0,0,0,.2);
+  @media (max-width: 840px) {
+    font-size: 18px;
+  }
+}
+
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2000; /* Sit on top */
+  left: 0;
+  
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  background-color: #363e45;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  text-align:center;
+  display:table;
+  min-height: 250px;  
+  line-height: 1.2em;
+  width: 80%; /* Could be more or less, depending on screen size */
+  
+span{
+  :before{
+    content:'';
+  }
+}
+  .options{
+   // margin-top:15%;
+  }
+ .cta-btn{
+   float:none;
+   margin: 20px;
+   @media (max-width: 840px) {
+    margin:0;
+  }
+   
+ }
+  h1{
+    color:#EFA409;
+    margin:0 auto;
+    margin-top:20px;
+    padding-bottom: 50px;
+    line-height: 3rem;
+  }
+}
+
+
+
+.close {
+  box-sizing: border-box;
+  padding: 6px 12px;
+  margin-right: 10px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: rgba(0,0,0,.2);
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 4px;
+  color: white;
+  background-color: rgba(0,0,0,.8);
 }

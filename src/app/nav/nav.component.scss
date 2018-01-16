@@ -1,12 +1,40 @@
 .header {
   padding: 30px 0;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
+.beerWrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.siteTitle{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
+  > h1{
+    font-size: 2.1em;
+    vertical-align: middle;
+  }
+}
 .cta-btn,
 .cta-btn:visited {
   margin: 10px;
+  padding: 9px 21px;
 }
+span{
+  font-size: 5rem;
+  color: #efa409;
+  left: 6%;
+  top: 0%;
 
+}
 #logo {
   width: 100px;
 }
@@ -27,6 +55,23 @@
   }
   #header {
     margin-bottom: 0;
+  }
+
+  .header{
+    text-align: center;
+  }
+
+  .siteTitle{
+    display: block;
+    height: 63px;
+    text-align:center;
+  
+    > h1{
+      display: block;
+      font-size: 2.1em;
+      font-family: "Cabin";
+      vertical-align: middle;
+    }
   }
 }
 

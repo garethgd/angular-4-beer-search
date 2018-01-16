@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="columns small-12 medium-6 large-7 beers" *ngIf="beer && beer.description else noBeer">
+  <div class="columns small-12 medium-6 large-7 beers" *ngIf="beer && beer.description">
     <div [@moveInLeft]="beer.state" class="beer-container">
       <div class="row">
         <div class="columns small-12 large-10">

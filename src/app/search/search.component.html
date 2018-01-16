@@ -1,16 +1,19 @@
 <div [@moveIn]="" class="row">
   <div class="columns small-12 medium-9">
+      <h2> Search for beer names from a brewery.</h2>
+      
    <div class="row">
+      <p class="columns small-12 medium-3">Categories</p>
     <p class="columns small-12 medium-9">Beer Name</p>
-     <p class="columns small-12 medium-3">Categories</p>
+    
    </div>
     <form action="" #formData='ngForm'>
+        <select class="classic" #selectedCategory (change)="currentCat(selectedCategory.value)">
+            <option  value="All">All</option>
+            <option *ngFor ="let value of categories"  value="{{value.name}}">{{value.name}}</option>
+       </select>
       <input [formControl]="term" type="text" placeholder="Search Beer">
-      <select #selectedCategory (change)="currentCat(selectedCategory.value)">
-         <option  value="All">All</option>
-  <option *ngFor ="let value of categories"  value="{{value.name}}">{{value.name}}</option>
- 
-</select>
+    
     </form>
   </div>
   <!--<ul class="suggestions">
